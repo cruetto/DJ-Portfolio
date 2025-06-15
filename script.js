@@ -6,27 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const starsLayer3 = document.getElementById('stars3');
 
     // Функция для создания звезд
-    function createStars(container, count, minSize, maxSize) {
+    function createStars(container, count, minSize, maxSize, colorArray, colorProbabilities) {
         for (let i = 0; i < count; i++) {
             const star = document.createElement('div');
             const size = Math.random() * (maxSize - minSize) + minSize;
-            
             star.className = 'star';
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
-            // Случайная задержка анимации, чтобы звезды мерцали несинхронно
             star.style.animationDelay = `${Math.random() * 4}s`;
-            
+            // Выбор цвета по вероятности
+            if (colorArray && colorProbabilities) {
+                let r = Math.random();
+                let acc = 0;
+                for (let j = 0; j < colorArray.length; j++) {
+                    acc += colorProbabilities[j];
+                    if (r < acc) {
+                        star.style.backgroundColor = colorArray[j];
+                        break;
+                    }
+                }
+            } else if (colorArray) {
+                star.style.backgroundColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+            }
             container.appendChild(star);
         }
     }
 
-    // Генерируем звезды на разных слоях
-    createStars(starsLayer1, 150, 0.5, 1.5); // Дальние, мелкие
-    createStars(starsLayer2, 70, 1, 2.5);   // Средние
-    createStars(starsLayer3, 25, 1.5, 3.5); // Ближние, крупные
+    // Цвета и вероятности: белый, синий, жёлтый, оранжевый, красный
+    const starColors = ['#fff', '#a3d8ff', '#ffe066', '#ffb347', '#ff6961'];
+    // Пример: белый — 40%, синий — 20%, жёлтый — 20%, оранжевый — 10%, красный — 10%
+    const starColorProbabilities = [0.4, 0.2, 0.2, 0.1, 0.1];
+
+    // Генерируем звезды на разных слоях (на 30% больше)
+    createStars(starsLayer1, Math.round(150 * 1.3), 0.5, 1.5, starColors, starColorProbabilities);
+    createStars(starsLayer2, Math.round(70 * 1.3), 1, 2.5, starColors, starColorProbabilities);
+    createStars(starsLayer3, Math.round(25 * 1.3), 1.5, 3.5, starColors, starColorProbabilities);
 
     // Обработчик параллакс-эффекта при скролле
     window.addEventListener('scroll', () => {
