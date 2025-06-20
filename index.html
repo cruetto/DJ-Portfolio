@@ -8,55 +8,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
     <!-- НОВЫЙ ПАРАЛЛАКС-ФОН -->
     <div id="parallax-background">
-        <div id="stars1" class="stars-layer"></div>
-        <div id="stars2" class="stars-layer"></div>
-        <div id="stars3" class="stars-layer">
-            <!-- SVG Большой Медведицы -->
-                  
-                        <!-- Большая Медведица, воссозданная по вашему изображению -->
-            <!-- Большая Медведица с расширенным viewBox для корректного отображения свечения -->
+        <div id="stars1" class="stars-layer">
+            <svg class="constellation-svg" viewBox="-50 -50 600 350" preserveAspectRatio="xMidYMid meet">
+            
+        <!-- Бенетнаш (конец ручки) -->
+        <circle class="star-point" cx="50" cy="180" r="4.5"/>
         
-        </div>
-    </div>
-    <svg class="constellation-svg" viewBox="-50 -50 600 350" preserveAspectRatio="xMidYMid meet">
-            <!-- 
-                ПОЯСНЕНИЕ:
-                Старый viewBox был "0 0 500 250".
-                Новый viewBox "-50 -50 600 350" создает невидимое поле 
-                в 50px со всех сторон, чтобы свечение не обрезалось.
-                Координаты звезд остаются прежними.
-            -->
-            
-            <!-- Бенетнаш (конец ручки) -->
-            <circle class="star-point" cx="50" cy="180" r="4.5"/>
-            
-            <!-- Мицар (средняя звезда ручки) -->
-            <circle class="star-point" cx="130" cy="150" r="4.2"/>
-            <!-- Алькор (спутник Мицара) -->
-            <circle class="star-point" cx="133" cy="145" r="2"/>
+        <!-- Мицар (средняя звезда ручки) -->
+        <circle class="star-point" cx="130" cy="150" r="4.2"/>
+        <!-- Алькор (спутник Мицара) -->
+        <circle class="star-point" cx="133" cy="145" r="2"/>
 
-            <!-- Алиот (начало ручки, самая яркая) -->
-            <circle class="star-point" cx="200" cy="135" r="5"/>
-            
-            <!-- Мегрец (угол ковша, самая тусклая) -->
-            <circle class="star-point" cx="270" cy="145" r="3"/>
-            
-            <!-- Фекда (нижняя левая звезда ковша) -->
-            <circle class="star-point" cx="330" cy="200" r="4"/>
-            
-            <!-- Мерак (нижняя правая звезда ковша) -->
-            <circle class="star-point" cx="410" cy="170" r="4.5"/>
-            
-            <!-- Дубхе (верхняя правая звезда ковша) -->
-            <circle class="star-point" cx="430" cy="100" r="5"/>
-        </svg>
+        <!-- Алиот (начало ручки, самая яркая) -->
+        <circle class="star-point" cx="200" cy="135" r="5"/>
+        
+        <!-- Мегрец (угол ковша, самая тусклая) -->
+        <circle class="star-point" cx="270" cy="145" r="3"/>
+        
+        <!-- Фекда (нижняя левая звезда ковша) -->
+        <circle class="star-point" cx="330" cy="200" r="4"/>
+        
+        <!-- Мерак (нижняя правая звезда ковша) -->
+        <circle class="star-point" cx="410" cy="170" r="4.5"/>
+        
+        <!-- Дубхе (верхняя правая звезда ковша) -->
+        <circle class="star-point" cx="430" cy="100" r="5"/>
+    </svg>
+        </div>
+        <div id="stars2" class="stars-layer"></div>
+        <div id="stars3" class="stars-layer"></div>
+    </div>
+    
 
     
+
 
     <!-- Анимированный фон -->
     <div class="background-animation">
@@ -167,12 +158,12 @@
             <h2 data-lang-key="contactTitle">Связаться со мной</h2>
             <p data-lang-key="contactSubTitle">Готовы зажечь? Свяжитесь со мной для бронирования даты!</p>
             <div class="contact-info">
-                <p class="phone-number">+370 6999 9999</p>
+                <a class="phone-number" href="tel:+37064824968">+370 648 24968</a>
             </div>
             <div class="social-links">
-                <a href="#" target="_blank">Instagram</a>
-                <a href="#" target="_blank">Facebook</a>
-                <a href="#" target="_blank">Telegram</a>
+                <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="mailto:yourmail@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Gmail</a>
             </div>
         </section>
     </main>

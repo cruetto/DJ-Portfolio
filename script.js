@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const starsLayer3 = document.getElementById('stars3');
 
     // Функция для создания звезд
-    function createStars(container, count, minSize, maxSize, colorArray, colorProbabilities) {
+    function createStars(container, count, minSize, maxSize, colorArray, colorProbabilities, totalHeightPx) {
+        container.style.height = `${totalHeightPx}px`;
         for (let i = 0; i < count; i++) {
             const star = document.createElement('div');
             const size = Math.random() * (maxSize - minSize) + minSize;
             star.className = 'star';
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
-            star.style.top = `${Math.random() * 100}%`;
+            // Размещаем звезды по всей высоте контейнера
+            star.style.top = `${Math.random() * totalHeightPx}px`;
             star.style.left = `${Math.random() * 100}%`;
             star.style.animationDelay = `${Math.random() * 4}s`;
             // Выбор цвета по вероятности
@@ -37,21 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Цвета и вероятности: белый, синий, жёлтый, оранжевый, красный
     const starColors = ['#fff', '#a3d8ff', '#ffe066', '#ffb347', '#ff6961'];
     // Пример: белый — 40%, синий — 20%, жёлтый — 20%, оранжевый — 10%, красный — 10%
-    const starColorProbabilities = [0.4, 0.2, 0.2, 0.1, 0.1];
+    const starColorProbabilities = [0.51, 0.4, 0.05, 0.02, 0.02];
 
-    // Генерируем звезды на разных слоях (на 30% больше)
-    createStars(starsLayer1, Math.round(150 * 1.3), 0.5, 1.5, starColors, starColorProbabilities);
-    createStars(starsLayer2, Math.round(70 * 1.3), 1, 2.5, starColors, starColorProbabilities);
-    createStars(starsLayer3, Math.round(25 * 1.3), 1.5, 3.5, starColors, starColorProbabilities);
+    // Вычисляем высоту полотна звезд: вся страница + запас (например, +1 экран)
+    function getStarFieldHeight() {
+        return Math.max(document.body.scrollHeight, window.innerHeight) + window.innerHeight;
+    }
+    const starFieldHeight = getStarFieldHeight();
+
+    // Генерируем звезды на разных слоях, высота полотна = вся страница + запас
+    createStars(starsLayer1, Math.round(300 * 3), 0.5, 1.5, starColors, starColorProbabilities, starFieldHeight);
+    createStars(starsLayer2, Math.round(140 * 3), 1, 2.5, starColors, starColorProbabilities, starFieldHeight);
+    createStars(starsLayer3, Math.round(50 * 3), 1.5, 3.5, starColors, starColorProbabilities, starFieldHeight);
 
     // Обработчик параллакс-эффекта при скролле
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
-
-        // Двигаем слои с разной скоростью
-        starsLayer1.style.transform = `translateY(${scrollTop * 0.1}px)`;
-        starsLayer2.style.transform = `translateY(${scrollTop * 0.3}px)`;
-        starsLayer3.style.transform = `translateY(${scrollTop * 0.5}px)`;
+        // Максимальное смещение не больше, чем (высота полотна - высота окна)
+        const maxOffset = starFieldHeight - window.innerHeight;
+        const offset1 = Math.min(scrollTop * 0.1, maxOffset * 0.1);
+        const offset2 = Math.min(scrollTop * 0.3, maxOffset * 0.3);
+        const offset3 = Math.min(scrollTop * 0.5, maxOffset * 0.5);
+        starsLayer1.style.transform = `translateY(${offset1}px)`;
+        starsLayer2.style.transform = `translateY(${offset2}px)`;
+        starsLayer3.style.transform = `translateY(${offset3}px)`;
     });
 
     

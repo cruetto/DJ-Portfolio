@@ -3,4 +3,5 @@
 
 [] Добавить новый блок для собственной музыки
 
-[] insta facebook gmail
+git config --global user.email "drcruetto@gmail.com"
+  git config --global user.name "cruetto"
