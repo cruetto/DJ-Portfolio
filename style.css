@@ -179,7 +179,7 @@ section {
     background-color: rgba(26, 26, 46, 0.7);
     border: 1px solid var(--primary-neon);
     border-radius: 10px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(1px);
     text-align: center;
     position: relative;
     /* Добавляем неоновое свечение */
@@ -316,7 +316,7 @@ nav a:hover {
 }
 
 .project-card {
-    background: var(--card-bg);
+    /* background: var(--card-bg); */
     border-radius: 10px;
     overflow: hidden;
     width: 300px;
@@ -369,7 +369,7 @@ nav a:hover {
 }
 
 .price-card {
-    background: var(--card-bg);
+    /* background: var(--card-bg); */
     
     padding: 30px;
     border-radius: 10px;
@@ -382,6 +382,7 @@ nav a:hover {
     transform: scale(1.05);
     border-color: var(--primary-neon);
     box-shadow: 0 0 12px var(--primary-neon);
+    
 }
 
 .price-card.popular {
@@ -494,6 +495,7 @@ footer {
     user-select: none;
     pointer-events: none;
     animation: neon-flicker 7s infinite alternate;
+    backdrop-filter: blur(10px);
 }
 
 @keyframes neon-flicker {
@@ -524,7 +526,7 @@ footer {
     object-fit: cover;
     border-radius: 18px;
     /* border: 3px solid var(--primary-neon);
-    box-shadow: 0 0 20px var(--primary-neon); */
+    box-shadow: 0 0 20px var(--primary-neон); */
     margin-bottom: 0;
     margin-left: 20px;
 }
@@ -547,5 +549,15 @@ footer {
     }
     .about-text p {
         font-size: 1.1rem;
+    }
+    .neon-sign {
+        position: static;
+        display: block;
+        margin: 0 auto 18px auto;
+        text-align: center;
+        width: auto;
+        max-width: 40vw;
+        padding: 8px 16px;
+        box-sizing: border-box;
     }
 }
